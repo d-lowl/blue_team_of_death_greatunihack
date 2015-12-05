@@ -6,13 +6,20 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
-        android:text="Pick One:"
+        android:text="Please select a ball:"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
+    <TextView
+        android:text="No ball selected"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textStyle="italic" />
     <Button
-        android:text="Register a Ball"
+        android:text="Select a Ball"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/regBallBtn" />

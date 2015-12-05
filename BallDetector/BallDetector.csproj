@@ -49,7 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="Activities\BallListActivity.cs" />
+    <Compile Include="Activities\HomeActivity.cs" />
+    <Compile Include="Activities\ListenerActivity.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\RegisterNameActivity.cs" />
     <Compile Include="Resources\models\Ball.cs" />
     <Compile Include="Resources\models\BallCollection.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -57,7 +61,6 @@
     <Compile Include="Server\ServerComs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
     <None Include="Resources\layout\HomePage.axml">
       <SubType>AndroidResource</SubType>
     </None>
