@@ -67,7 +67,7 @@ namespace BallDetector
 			public const int deviceNameTb = 2131034113;
 			
 			// aapt resource value: 0x7f050000
-			public const int textView1 = 2131034112;
+			public const int topLabel = 2131034112;
 			
 			static Id()
 			{
@@ -83,7 +83,7 @@ namespace BallDetector
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int RegPrompt = 2130903040;
+			public const int AddPlayerPage = 2130903040;
 			
 			static Layout()
 			{
