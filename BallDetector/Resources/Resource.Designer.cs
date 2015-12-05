@@ -57,33 +57,11 @@ namespace BallDetector
 			}
 		}
 		
-		public partial class Id
-		{
-			
-			// aapt resource value: 0x7f050002
-			public const int confirmNameBtn = 2131034114;
-			
-			// aapt resource value: 0x7f050001
-			public const int deviceNameTb = 2131034113;
-			
-			// aapt resource value: 0x7f050000
-			public const int topLabel = 2131034112;
-			
-			static Id()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Id()
-			{
-			}
-		}
-		
 		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int AddPlayerPage = 2130903040;
+			public const int LoginPage = 2130903040;
 			
 			static Layout()
 			{
