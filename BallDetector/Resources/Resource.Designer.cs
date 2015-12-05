@@ -60,8 +60,14 @@ namespace BallDetector
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050002
+			public const int confirmNameBtn = 2131034114;
+			
+			// aapt resource value: 0x7f050001
+			public const int deviceNameTb = 2131034113;
+			
 			// aapt resource value: 0x7f050000
-			public const int Register = 2131034112;
+			public const int textView1 = 2131034112;
 			
 			static Id()
 			{
@@ -77,7 +83,7 @@ namespace BallDetector
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int RegPrompt = 2130903040;
 			
 			static Layout()
 			{
