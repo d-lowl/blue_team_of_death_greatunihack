@@ -10,6 +10,7 @@ using Android.Views;
 using Android.Widget;
 using Java.IO;
 using Android.Runtime;
+using System.Net;
 
 namespace BallDetector.Activities
 {
@@ -18,6 +19,7 @@ namespace BallDetector.Activities
     {
         private NfcAdapter nfcAdapter;
         private TextView textView;
+        private EditText editText;
         private bool inReadMode;
         private Button readTagButton;
 
@@ -28,17 +30,14 @@ namespace BallDetector.Activities
             SetContentView(Resource.Layout.LoginPage);
 
             textView = FindViewById<TextView>(Resource.Id.textView);
+            editText = FindViewById<EditText>(Resource.Id.loginTb);
+
             // Check for available NFC Adapter
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
             readTagButton = FindViewById<Button>(Resource.Id.readTagBtn);
-//            readTagButton.Click += ReadTagButtonOnClick;
+            readTagButton.Click += ReadTagButtonOnClick;
         }
-
-		protected override void OnResume()
-		{
-			EnableReadMode ();
-		}
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
@@ -47,22 +46,38 @@ namespace BallDetector.Activities
 
         protected override void OnNewIntent(Intent intent)
         {
-            if (true)
+            if (inReadMode)
             {
                 if (intent == null) return;
 
                 var tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
 
                 if(tag == null)
-                 textView.Text = "intent was null";
+                 textView.Text = "Something Went Wrong!";
                 else
                 {
+
                     Ndef ndef = Ndef.Get(tag);
-                    ndef.Connect();
-                    NdefMessage ndefM = ndef.NdefMessage;
-                    NdefRecord[] rec = ndefM.GetRecords();
-                    byte[] payload = rec[0].GetPayload();
-                    textView.Text = System.Text.Encoding.Default.GetString(payload);
+                    try
+                    {
+                        ndef.Connect();
+                        NdefMessage ndefM = ndef.NdefMessage;
+                        NdefRecord[] rec = ndefM.GetRecords();
+                        byte[] payload = rec[0].GetPayload();
+
+                        string userName = editText.Text;
+                        string ballName = Encoding.Default.GetString(payload);
+
+                        if (userName == "") return;
+
+                        Server.ServerComs.SendNameAndBall(userName, ballName);
+                        SetResult(Result.Ok, new Intent().PutExtra("Name", userName));
+                        Finish();
+                    }
+                    catch (NullReferenceException e)
+                    {
+                        return;
+                    }
                 }
         //        NdefMessage[] messages = NfcUtils.getNdefMessages(getIntent());
         //        byte[] payload = messages[0].getRecords()[0].getPayload();
@@ -101,14 +116,14 @@ namespace BallDetector.Activities
             var view = (View)sender;
             if (view.Id == Resource.Id.readTagBtn)
             {
-                DisplayMessage("Touch and hold the tag against the phone to write.");
+                DisplayMessage("Touch your ball to login");
                 EnableReadMode();
             }
         }
 
         private void EnableReadMode()
         {
-//            inReadMode = true;
+            inReadMode = true;
             // Create an intent filter for when an NFC tag is discovered.  When
             // the NFC tag is discovered, Android will u
             var tagDetected = new IntentFilter(NfcAdapter.ActionTagDiscovered);
@@ -134,5 +149,6 @@ namespace BallDetector.Activities
             else
                 nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
         }
+        //
     }
 }

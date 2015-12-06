@@ -20,21 +20,23 @@ namespace BallDetector.Activities
     {
         private NfcAdapter nfcAdapter;
         private TextView textView;
+        int totalScores = 0;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            //SetContentView(Resource.Layout.);
+            SetContentView(Resource.Layout.ListeningPage);
 
-            //textView = FindViewById<TextView>(Resource.Id.);
+            textView = FindViewById<TextView>(Resource.Id.scoreTextView);
 
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
         }
 
 		protected override void OnResume()
 		{
-			EnableReadMode ();
+            base.OnResume();
+			EnableReadMode();
 		}
 
 		protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -55,11 +57,22 @@ namespace BallDetector.Activities
 				else
 				{
 					Ndef ndef = Ndef.Get(tag);
-					ndef.Connect();
-					NdefMessage ndefM = ndef.NdefMessage;
-					NdefRecord[] rec = ndefM.GetRecords();
-					byte[] payload = rec[0].GetPayload();
-					textView.Text = System.Text.Encoding.Default.GetString(payload);
+
+                    try
+                    {
+                        ndef.Connect();
+                        NdefMessage ndefM = ndef.NdefMessage;
+                        NdefRecord[] rec = ndefM.GetRecords();
+                        byte[] payload = rec[0].GetPayload();
+                        string sendToServer = System.Text.Encoding.Default.GetString(payload);
+                        totalScores += 1;
+                        textView.Text = totalScores.ToString();
+                        Server.ServerComs.SendBall(sendToServer);
+                    }
+                    catch (NullReferenceException e)
+                    {
+                        return;
+                    }
 				}
 				//        NdefMessage[] messages = NfcUtils.getNdefMessages(getIntent());
 				//        byte[] payload = messages[0].getRecords()[0].getPayload();

@@ -21,7 +21,7 @@
             android:layout_below="@id/loginTb"
             android:id="@+id/readTagBtn" />
         <TextView
-            android:text="Touch your ball to login"
+            android:text="Please add your ball"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
