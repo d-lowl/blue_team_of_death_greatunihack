@@ -39,6 +39,8 @@ namespace BallDetector.Activities
             Button playButton = FindViewById<Button>(Resource.Id.playButton);
             playButton.Click += (sender, e) =>
             {
+                if (users.Count == 0) return;
+
                 var intent = new Intent(this, typeof(ListenerActivity));
 
                 //foreach (string user in users)
