@@ -35,6 +35,16 @@ namespace BallDetector.Activities
 
                 StartActivityForResult(intent, LOGIN_REQUEST);
             };
+
+            Button newGameButton = FindViewById<Button>(Resource.Id.newGameButton);
+            newGameButton.Click += (sender, e) =>
+            {
+                users.Clear();
+
+                adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, users.ToArray());
+
+                userList.Adapter = adapter;
+            };
             
             Button playButton = FindViewById<Button>(Resource.Id.playButton);
             playButton.Click += (sender, e) =>
@@ -42,11 +52,6 @@ namespace BallDetector.Activities
                 if (users.Count == 0) return;
 
                 var intent = new Intent(this, typeof(ListenerActivity));
-
-                //foreach (string user in users)
-                //{
-                //    Server.ServerComs.
-                //}
 
                 StartActivity(intent);
             };

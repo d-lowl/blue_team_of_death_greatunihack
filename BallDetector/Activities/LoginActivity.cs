@@ -52,8 +52,8 @@ namespace BallDetector.Activities
 
                 var tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
 
-                if(tag == null)
-                 textView.Text = "Something Went Wrong!";
+                if (tag == null)
+                    textView.Text = "Something Went Wrong!";
                 else
                 {
 
@@ -79,23 +79,7 @@ namespace BallDetector.Activities
                         return;
                     }
                 }
-        //        NdefMessage[] messages = NfcUtils.getNdefMessages(getIntent());
-        //        byte[] payload = messages[0].getRecords()[0].getPayload();
-        //        String placeId = new String(payload);              
-
-                    // These next few lines will create a payload (consisting of a string)
-                    // and a mimetype. NFC record are arrays of bytes. 
-                    //var payload = Encoding.ASCII.GetBytes(GetRandomHominid());
-                    //var mimeBytes = Encoding.ASCII.GetBytes(ViewApeMimeType);
-                    //var apeRecord = new NdefRecord(NdefRecord.TnfMimeMedia, mimeBytes, new byte[0], payload);
-                    //var ndefMessage = new NdefMessage(new[] { apeRecord });
-
-                    //if (!TryAndWriteToTag(tag, ndefMessage))
-                    //{
-                    //    // Maybe the write couldn't happen because the tag wasn't formatted?
-                    //    TryAndFormatTagWithMessage(tag, ndefMessage);
-                    //}             
-                }
+            }
         }
 
         protected override void OnPause()
@@ -149,6 +133,5 @@ namespace BallDetector.Activities
             else
                 nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
         }
-        //
     }
 }

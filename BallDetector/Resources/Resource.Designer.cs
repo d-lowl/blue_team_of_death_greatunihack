@@ -76,6 +76,9 @@ namespace BallDetector
 			// aapt resource value: 0x7f060002
 			public const int loginTb = 2131099650;
 			
+			// aapt resource value: 0x7f060008
+			public const int newGameButton = 2131099656;
+			
 			// aapt resource value: 0x7f060007
 			public const int playButton = 2131099655;
 			
