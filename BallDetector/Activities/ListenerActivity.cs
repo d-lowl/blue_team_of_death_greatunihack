@@ -24,66 +24,66 @@ namespace BallDetector.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.);
+            //SetContentView(Resource.Layout.);
 
-            textView = FindViewById<TextView>(Resource.Id.);
+            //textView = FindViewById<TextView>(Resource.Id.);
 
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
         }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-            if (nfcAdapter != null)
-            {
-                var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
-                nfcAdapter.EnableForegroundDispatch
-                (
-                    this,
-                    PendingIntent.GetActivity(this, 0, intent, 0),
-                    new[] { new IntentFilter(NfcAdapter.ActionTechDiscovered) },
-                    null
-                );
-            }
-        }
+        //protected override void OnResume()
+        //{
+        //    base.OnResume();
+        //    if (nfcAdapter != null)
+        //    {
+        //        var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
+        //        nfcAdapter.EnableForegroundDispatch
+        //        (
+        //            this,
+        //            PendingIntent.GetActivity(this, 0, intent, 0),
+        //            new[] { new IntentFilter(NfcAdapter.ActionTechDiscovered) },
+        //            null
+        //        );
+        //    }
+        //}
 
-        protected override void OnPause()
-        {
-            base.OnPause();
-            nfcAdapter.DisableForegroundDispatch(this);
-        }
+        //protected override void OnPause()
+        //{
+        //    base.OnPause();
+        //    nfcAdapter.DisableForegroundDispatch(this);
+        //}
 
-        protected override void OnNewIntent(Intent intent)
-        {
-            base.OnNewIntent(intent);
+        //protected override void OnNewIntent(Intent intent)
+        //{
+        //    base.OnNewIntent(intent);
 
-            NdefMessage[] messages = null;
+        //    NdefMessage[] messages = null;
 
-            var rawMsgs = intent. .GetParcelableExtra(NfcAdapter.ExtraNdefMessages).ToArray<Parcelable>();
+        //    var rawMsgs = intent.GetParcelableExtra(NfcAdapter.ExtraNdefMessages).ToArray<Parcelable>();
 
-            if (rawMsgs != null)
-            {
-                return;
-            }
+        //    if (rawMsgs != null)
+        //    {
+        //        return;
+        //    }
 
-            if (rawMsgs != null)
-            {
-                var x = rawMsgs.ToArray<byte>();
-                messages = rawMsgs.ToArray();
-            }
+        //    if (rawMsgs != null)
+        //    {
+        //        var x = rawMsgs.ToArray<byte>();
+        //        messages = rawMsgs.ToArray();
+        //    }
 
-            //These next few lines will create a payload (consisting of a string)
-            // and a mimetype.NFC record are arrays of bytes. 
-            var payload = Encoding.ASCII.GetBytes(GetRandomHominid());
-            var mimeBytes = Encoding.ASCII.GetBytes(ViewApeMimeType);
-            var apeRecord = new NdefRecord(NdefRecord.TnfMimeMedia, mimeBytes, new byte[0], payload);
-            var ndefMessage = new NdefMessage(new[] { apeRecord });
+        //    //These next few lines will create a payload (consisting of a string)
+        //    // and a mimetype.NFC record are arrays of bytes. 
+        //    var payload = Encoding.ASCII.GetBytes(GetRandomHominid());
+        //    var mimeBytes = Encoding.ASCII.GetBytes(ViewApeMimeType);
+        //    var apeRecord = new NdefRecord(NdefRecord.TnfMimeMedia, mimeBytes, new byte[0], payload);
+        //    var ndefMessage = new NdefMessage(new[] { apeRecord });
 
-            if (!TryAndWriteToTag(tag, ndefMessage))
-            {
-                // Maybe the write couldn't happen because the tag wasn't formatted?
-                TryAndFormatTagWithMessage(tag, ndefMessage);
-            }
-        }
+        //    if (!TryAndWriteToTag(tag, ndefMessage))
+        //    {
+        //        // Maybe the write couldn't happen because the tag wasn't formatted?
+        //        TryAndFormatTagWithMessage(tag, ndefMessage);
+        //    }
+        //}
     }
 }
