@@ -44,25 +44,38 @@ namespace BallDetector.Activities
         {
             if (inReadMode)
             {
-
                 if (intent == null) return;
 
-                textView.Text = intent.ToString();
+                var tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
 
+                if(tag == null)
+                 textView.Text = "intent was null";
+                else
+                {
+                    Ndef ndef = Ndef.Get(tag);
+                    ndef.Connect();
+                    NdefMessage ndefM = ndef.NdefMessage;
+                    NdefRecord[] rec = ndefM.GetRecords();
+                    byte[] payload = rec[0].GetPayload();
+                    textView.Text = System.Text.Encoding.Default.GetString(payload);
+                }
+        //        NdefMessage[] messages = NfcUtils.getNdefMessages(getIntent());
+        //        byte[] payload = messages[0].getRecords()[0].getPayload();
+        //        String placeId = new String(payload);              
 
-                // These next few lines will create a payload (consisting of a string)
-                // and a mimetype. NFC record are arrays of bytes. 
-                //var payload = Encoding.ASCII.GetBytes(GetRandomHominid());
-                //var mimeBytes = Encoding.ASCII.GetBytes(ViewApeMimeType);
-                //var apeRecord = new NdefRecord(NdefRecord.TnfMimeMedia, mimeBytes, new byte[0], payload);
-                //var ndefMessage = new NdefMessage(new[] { apeRecord });
+                    // These next few lines will create a payload (consisting of a string)
+                    // and a mimetype. NFC record are arrays of bytes. 
+                    //var payload = Encoding.ASCII.GetBytes(GetRandomHominid());
+                    //var mimeBytes = Encoding.ASCII.GetBytes(ViewApeMimeType);
+                    //var apeRecord = new NdefRecord(NdefRecord.TnfMimeMedia, mimeBytes, new byte[0], payload);
+                    //var ndefMessage = new NdefMessage(new[] { apeRecord });
 
-                //if (!TryAndWriteToTag(tag, ndefMessage))
-                //{
-                //    // Maybe the write couldn't happen because the tag wasn't formatted?
-                //    TryAndFormatTagWithMessage(tag, ndefMessage);
-                //}             
-            }
+                    //if (!TryAndWriteToTag(tag, ndefMessage))
+                    //{
+                    //    // Maybe the write couldn't happen because the tag wasn't formatted?
+                    //    TryAndFormatTagWithMessage(tag, ndefMessage);
+                    //}             
+                }
         }
 
         protected override void OnPause()
