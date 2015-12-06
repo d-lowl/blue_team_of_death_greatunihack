@@ -32,8 +32,13 @@ namespace BallDetector.Activities
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
             readTagButton = FindViewById<Button>(Resource.Id.readTagBtn);
-            readTagButton.Click += ReadTagButtonOnClick;
+//            readTagButton.Click += ReadTagButtonOnClick;
         }
+
+		protected override void OnResume()
+		{
+			EnableReadMode ();
+		}
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
@@ -42,7 +47,7 @@ namespace BallDetector.Activities
 
         protected override void OnNewIntent(Intent intent)
         {
-            if (inReadMode)
+            if (true)
             {
                 if (intent == null) return;
 
@@ -103,7 +108,7 @@ namespace BallDetector.Activities
 
         private void EnableReadMode()
         {
-            inReadMode = true;
+//            inReadMode = true;
             // Create an intent filter for when an NFC tag is discovered.  When
             // the NFC tag is discovered, Android will u
             var tagDetected = new IntentFilter(NfcAdapter.ActionTagDiscovered);
