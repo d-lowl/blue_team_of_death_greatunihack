@@ -26,6 +26,10 @@ namespace BallDetector
 		
 		public static void UpdateIdValues()
 		{
+			global::Poz1.NFCForms.Droid.Resource.String.ApplicationName = global::BallDetector.Resource.String.ApplicationName;
+			global::Poz1.NFCForms.Droid.Resource.String.Hello = global::BallDetector.Resource.String.Hello;
+			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::BallDetector.Resource.String.ApplicationName;
+			global::Xamarin.Forms.Platform.Resource.String.Hello = global::BallDetector.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -47,6 +51,9 @@ namespace BallDetector
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int monoandroidsplash = 2130837505;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -57,11 +64,48 @@ namespace BallDetector
 			}
 		}
 		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f060003
+			public const int addPlayerBtn = 2131099651;
+			
+			// aapt resource value: 0x7f060005
+			public const int confirmNameBtn = 2131099653;
+			
+			// aapt resource value: 0x7f060000
+			public const int loginTb = 2131099648;
+			
+			// aapt resource value: 0x7f060004
+			public const int playerList = 2131099652;
+			
+			// aapt resource value: 0x7f060001
+			public const int readTagBtn = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int textView = 2131099650;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
 		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int LoginPage = 2130903040;
+			public const int ListeningPage = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int LoginPage = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Main = 2130903042;
 			
 			static Layout()
 			{
@@ -88,6 +132,22 @@ namespace BallDetector
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int Mono_Android_Theme_Splash = 2131034112;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}

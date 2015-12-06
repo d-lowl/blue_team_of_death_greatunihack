@@ -2,5 +2,5 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
   <!--@string/hello-->
-    <string name="ApplicationName">BallDetector</string>
+    <string name="ApplicationName">2guys2balls</string>
 </resources>

@@ -8,19 +8,25 @@
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:padding="20">
+        android:layout_margin="20dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/loginTb"
             android:hint="Your Username" />
+        <Button
+            android:text="Read Ball"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginTb"
+            android:id="@+id/readTagBtn" />
         <TextView
             android:text="Touch your ball to login"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView1"
+            android:id="@+id/textView"
             android:layout_alignParentBottom="true"
-            android:textAlignment="center" />
+            android:gravity="center" />
     </RelativeLayout>
 </LinearLayout>
